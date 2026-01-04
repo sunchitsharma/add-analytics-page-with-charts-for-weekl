@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics - Weekly Active Users</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f9fb;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    #chart-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weekly Active Users</h1>
+  <div id="chart-container">
+    <canvas id="weeklyUsersChart"></canvas>
+  </div>
+  <script>
+    const ctx = document.getElementById('weeklyUsersChart').getContext('2d');
+    const weeklyActiveUsersData = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Active Users',
+        data: [120, 150, 170, 180, 200, 220, 190],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        tension: 0.3,
+        fill: true
+      }]
+    };
+
+    const weeklyActiveUsersConfig = {
+      type: 'line',
+      data: weeklyActiveUsersData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'Weekly Active Users'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Number of Users'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Day of Week'
+            }
+          }
+        }
+      }
+    };
+
+    new Chart(ctx, weeklyActiveUsersConfig);
+  </script>
+</body>
+</html>
